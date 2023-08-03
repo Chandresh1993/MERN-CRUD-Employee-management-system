@@ -9,7 +9,7 @@ const Read = () => {
   // Delete Api
   const handleDelete = async (id) => {
     await axios
-      .delete(`http://localhost:7000/${id}`)
+      .delete(`http://localhost:8000/${id}`)
       .then((response) => {
         console.log("Row Deleted succesfullt", response.data);
         fetchData();
@@ -23,7 +23,7 @@ const Read = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:7000/");
+      const response = await axios.get("http://localhost:8000/");
       setData(response.data);
       setLoading(false);
     } catch (error) {
@@ -39,13 +39,16 @@ const Read = () => {
   return (
     <div className="container">
       <div className="mt-2">
+        <h1 className="text-dark  text-center">Employee Managment</h1>
         <table className="table table-hover table-bordered border-dark  ">
           <thead>
             <tr className="table-dark">
               <th scope="col">S.No</th>
-              <th scope="col">Book Name</th>
-              <th scope="col">Description</th>
-              <th scope="col">Price</th>
+              <th scope="col">NAME</th>
+              <th scope="col">ID</th>
+              <th scope="col">PHONE</th>
+              <th scope="col">ADDRESS</th>
+              <th scope="col">DEPARTMENT</th>
               <th scope="col">Action</th>
             </tr>
           </thead>
@@ -59,11 +62,13 @@ const Read = () => {
                 <tr key={index}>
                   <th scope="row">{index + 1}</th>
                   <td>{item.name}</td>
-                  <td>{item.description}</td>
-                  <td>{item.price}</td>
+                  <td>{item.id}</td>
+                  <td>{item.phone}</td>
+                  <td>{item.address}</td>
+                  <td>{item.department}</td>
                   <td>
                     <Link
-                      to={`/Edit/${item._id}`}
+                      to={`/edit/${item._id}`}
                       className="btn btn-success m-2 "
                     >
                       Edit

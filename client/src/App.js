@@ -11,8 +11,8 @@ const App = () => {
     <BrowserRouter>
     <Routes>
       <Route exact path="/"  element={<Create />} ></Route>
-      <Route path="/Read" element={<Read />} ></Route>
-      <Route path="/Edit/:id" element={<Edit />} ></Route>
+      <Route path="/read" element={<Read />} ></Route>
+      <Route path="/edit/:id" element={<Edit />} ></Route>
     </Routes>
     </BrowserRouter>
 

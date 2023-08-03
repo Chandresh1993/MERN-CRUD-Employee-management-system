@@ -13,12 +13,13 @@ function Edit() {
   console.log(id);
   const [formData, setFormData] = useState({
     name: "",
-    description: "",
-    price: "",
+    id: "",
+    phone: "",
+    address: "",
+    department: "",
   });
 
-  // State to store error meassages if any
-  const [errors, setErrors] = useState({});
+ 
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -31,10 +32,10 @@ function Edit() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await axios
-      .put(`http://localhost:7000/${id}`, formData)
+      .put(`http://localhost:8000/${id}`, formData)
       .then((response) => {
         console.log("Data successfully Edit to API", response.data);
-        navigate("/Read");
+        navigate("/read");
       })
       .then()
       .catch((error) => {
@@ -48,7 +49,7 @@ function Edit() {
   }, []);
 
   const loadUser = async () => {
-    const result = await axios.get(`http://localhost:7000/${id}`);
+    const result = await axios.get(`http://localhost:8000/${id}`);
     setFormData(result.data);
   };
 
@@ -56,13 +57,11 @@ function Edit() {
     <div className="App">
       <div className="container">
         <div className="mt-2">
-          <form
-            className="p-3 mb-2 bg-success text-white"
-            onSubmit={handleSubmit}
-          >
-            <h1 className="text-dark">Edit Book Store Data</h1>
+          <h1 className="text-dark">Employee Managment</h1>
+          <form className="p-3 mb-2 bg-dark text-white" onSubmit={handleSubmit}>
+            <h1 className="text-dark">Employee Managment</h1>
             <div className="row mb-3">
-              <label className="col-sm-2 col-form-label">Book Name</label>
+              <label className="col-sm-2 col-form-label">Employee Name</label>
               <div className="col-sm-10">
                 <input
                   type="text"
@@ -74,31 +73,55 @@ function Edit() {
               </div>
             </div>
             <div className="row mb-3">
-              <label className="col-sm-2 col-form-label">Description</label>
+              <label className="col-sm-2 col-form-label">Employee id</label>
               <div className="col-sm-10">
                 <input
-                  type="text"
+                  type="number"
                   className="form-control"
-                  name="description"
-                  value={formData.description}
+                  name="id"
+                  value={formData.id}
                   onChange={handleChange}
                 />
               </div>
             </div>
             <div className="row mb-3">
-              <label className="col-sm-2 col-form-label">Price</label>
+              <label className="col-sm-2 col-form-label">Phone Number</label>
               <div className="col-sm-10">
                 <input
                   type="number"
                   className="form-control"
-                  name="price"
-                  value={formData.price}
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="row mb-3"></div>
+              <label className="col-sm-2 col-form-label">
+                Employee Address
+              </label>
+              <div className="col-sm-10">
+                <input
+                  type="text"
+                  className="form-control"
+                  name="address"
+                  value={formData.address}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="row mb-3"></div>
+              <label className="col-sm-2 col-form-label">Depatment</label>
+              <div className="col-sm-10">
+                <input
+                  type="text"
+                  className="form-control"
+                  name="department"
+                  value={formData.department}
                   onChange={handleChange}
                 />
               </div>
             </div>
             <button type="submit" className="btn btn-primary">
-              Submit
+              Edit Employee
             </button>
           </form>
         </div>
